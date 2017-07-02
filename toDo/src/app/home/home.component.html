@@ -1,152 +1,81 @@
-<p>
-  home works!
-</p>
+<div class="row">
+  <div class="col-md-12">
 
-
-        <!--Home -->
-
-        <div class="row">
-            <div class="col-md-12">
-
-                <!-- ToDo Item-->
-                <div class="view">
-                    <div class="panel panel-primary">
-                        <div class="panel-body" contenteditable="true">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <h4 class="pull-right">
-                                        <span>ToDo Item :</span>
-                                    </h4>
-                                </div>
-                                <div class="col-md-6">
-                                    <span><input type="text" class="form-control" placeholder="add ToDO"></span>
-                                </div>
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-default">
+    <!-- ToDo Item-->
+    <div class="view">
+      <div class="panel panel-primary">
+        <div class="panel-body" contenteditable="true">
+          <div class="row">
+            <div class="col-md-3">
+              <h4 class="pull-right">
+                <span>ToDo Item :</span>
+              </h4>
+            </div>
+            <div class="col-md-6">
+              <span><input type="text" class="form-control" (keyup.enter)="submit()" [(ngModel)]="message"></span>
+            </div>
+            <div class="col-md-3">
+              <button type="button" class="btn btn-default" (click)="submit()">
 						Add
 					</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End ToDo Item-->
-
-                <!-- Panel-->
-                <div class="panel">
-                    <!-- Panel Header-->
-                    <div class="panel-heading">
-                        <div class="view">
-                            <ul class="nav nav-tabs">
-                                <li class="active"><a> Current </a></li>
-                                <li><a> Due </a></li>
-                                <li><a> Paused </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- End Panel Header-->
-
-                    <!-- ToDo List-->
-                    <div class="panel-body">
-                        <div class="tab-pane active">
-                            <ul class="list-group">
-                                <!-- First-->
-                                <li class="list-group-item" *ngFor="let item of toDoList">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <p>
-                                                Let's Do it
-                                            </p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="col-md-offset-1 pull-right">
-                                                <div class="btn btn-success">
-                                                    <i class="fa fa-check-square" aria-hidden="true"></i>
-                                                    <span>Complete</span>
-                                                </div>
-                                                <div class="btn btn-warning">
-                                                    <i class="fa fa-pause" aria-hidden="true"></i>
-                                                    <span>  Pause</span>
-                                                </div>
-                                                <div class="btn btn-danger">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                    <span>  Delete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <!-- End First-->
-
-                                <!-- Second-->
-                                <li class="list-group-item" *ngFor="let item of toDoList">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <p>
-                                                Do this again.
-                                            </p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="col-md-offset-1 pull-right">
-                                                <div class="btn btn-success">
-                                                    <i class="fa fa-check-square" aria-hidden="true"></i>
-                                                    <span>Complete</span>
-                                                </div>
-                                                <div class="btn btn-warning">
-                                                    <i class="fa fa-pause" aria-hidden="true"></i>
-                                                    <span>  Pause</span>
-                                                </div>
-                                                <div class="btn btn-danger">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                    <span>  Delete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <!-- End Second-->
-
-                                <!-- Third -->
-                                <li class="list-group-item" *ngFor="let item of toDoList">
-                                    <div class="row">
-                                        <div class="col-md-9">
-                                            <p>
-                                                One Last Time.
-                                            </p>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="col-md-offset-1 pull-right">
-                                                <div class="btn btn-success">
-                                                    <i class="fa fa-check-square" aria-hidden="true"></i>
-                                                    <span>Complete</span>
-                                                </div>
-                                                <div class="btn btn-warning">
-                                                    <i class="fa fa-pause" aria-hidden="true"></i>
-                                                    <span>  Pause</span>
-                                                </div>
-                                                <div class="btn btn-danger">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                    <span>  Delete</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <!-- End Third-->
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- End ToDo List-->
-
-                </div>
-                <!-- End Panel -->
-
             </div>
-
+          </div>
         </div>
+      </div>
+    </div>
+    <!-- End ToDo Item-->
 
+    <!-- Panel-->
+    <div class="panel">
+      <!-- Panel Header-->
+      <div class="panel-heading">
+        <div class="view">
+          <ul class="nav nav-tabs">
+            <li [ngClass]="{'active' : currentSelection === 'Current'}" (click)="filterData(-1)"><a> Current </a></li>
+            <li [ngClass]="{'active' : currentSelection === 'Due'}" (click)="filterData(0)"><a> Due </a></li>
+            <li [ngClass]="{'active' : currentSelection === 'Paused'}" (click)="filterData(2)"><a> Paused </a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- End Panel Header-->
 
-        <!--End Home -->
+      <!-- ToDo List-->
+      <div class="panel-body">
+        <div class="tab-pane active">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let item of toDoList">
+              <div class="row">
+                <div class="col-md-9">
+                  <p>
+                    {{item.message}}
+                  </p>
+                </div>
+                <div class="col-md-3">
+                  <div class="col-md-offset-1 pull-right">
+                    <div class="btn btn-success" (click)="updateStatus(item.id, 1)">
+                      <i class="fa fa-check-square" aria-hidden="true"></i>
+                      <span>Complete</span>
+                    </div>
+                    <div class="btn btn-warning" (click)="updateStatus(item.id, 2)">
+                      <i class="fa fa-pause" aria-hidden="true"></i>
+                      <span>  Pause</span>
+                    </div>
+                    <div class="btn btn-danger" (click)="updateStatus(item.id, 3)">
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                      <span>  Delete</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- End ToDo List-->
+
+    </div>
+    <!-- End Panel -->
+
+  </div>
+
+</div>

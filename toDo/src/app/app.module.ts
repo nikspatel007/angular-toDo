@@ -1,3 +1,4 @@
+import { ToDoService } from './shared/services/to-do.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +21,7 @@ import { HistoryComponent } from './history/history.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ToDoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
